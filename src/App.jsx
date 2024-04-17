@@ -71,7 +71,7 @@ export default function App() {
 
     const handleContinueClick = async () => {
         try {
-            const response = await fetch('http://localhost:8000/send-data-to-bot', {
+            const response = await fetch(`http://localhost:8000/send-data-to-bot?chatId=${tg.chatId}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -91,6 +91,7 @@ export default function App() {
             alert('Failed to send data to bot');
         }
     };
+
 
 
     useEffect(() => {
