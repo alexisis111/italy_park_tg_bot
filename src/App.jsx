@@ -29,7 +29,7 @@ export default function App() {
         e.preventDefault();
 
         try {
-            const response = await fetch('http://localhost:3001/users', {
+            const response = await fetch('http://localhost:3001/send-data-to-bot', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
