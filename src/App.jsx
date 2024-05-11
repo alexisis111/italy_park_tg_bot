@@ -69,10 +69,30 @@ export default function App() {
         }
     };
 
+    const handleButtonClick = async () => {
+        try {
+            const response = await fetch('http://localhost:8000/send-data-to-bot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(formData)
+            });
+            if (!response.ok) {
+                throw new Error('Failed to send data to bot');
+            }
+            alert('Data sent to bot successfully!');
+        } catch (error) {
+            console.error('Error:', error);
+            alert('Failed to send data to bot');
+        }
+    };
+
     useEffect(() => {
+
         if (formData.firstName && formData.lastName && formData.phone && formData.carNumber) {
             tg.sendData(JSON.stringify(formData));
-            tg.MainButton.show();
+            tg.MainButton.show(() => handleButtonClick);
         } else {
             tg.MainButton.hide();
         }
